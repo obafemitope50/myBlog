@@ -1,2 +1,2 @@
-# myBlog
+# Blog
 A mini blog 
