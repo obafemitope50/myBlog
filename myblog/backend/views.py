@@ -1,25 +1,21 @@
-from unicodedata import name
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from .models import Post
 
-# Create your views here.
 def index(request):
     posts = Post.objects.all()
     return render(request, "index.html", {'posts':posts})
 
 
-# Create your views here.
 def about(request):
     return render(request, "about.html")
 
-# Create your views here.
+
 def post(request, pk):
     posts = Post.objects.get(id=pk)
     return render(request, "post.html", {'posts':posts})
 
 
-# Create your views here.
 def contact(request):
     if request.method == "POST":   
         name = request.POST['name']
@@ -27,10 +23,10 @@ def contact(request):
         
         subject = "Website Inquiry"
         body = {
-        'name': request.POST['name'],
-        'email' : request.POST['email'],
-        'phone_number' : request.POST['phonenumber'],
-        'message' : request.POST['message'],
+            'name': request.POST['name'],
+            'email' : request.POST['email'],
+            'phone_number' : request.POST['phonenumber'],
+            'message' : request.POST['message'],
         }
         message = "\n".join(body.values())
         #send mail
@@ -47,7 +43,6 @@ def contact(request):
 
 
 
-# def contact(request):
 #     if request.method == "POST": 
 #         form = ContactForm(request.POST)
 #         if form.is_valid():

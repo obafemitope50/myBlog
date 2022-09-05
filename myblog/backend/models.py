@@ -1,8 +1,7 @@
-from telnetlib import STATUS
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
-# Create your models here.
+
 
 STATUS = (
     (0, "Draft"),
@@ -15,6 +14,7 @@ class Post(models.Model):
     body = models.CharField(max_length=10000, unique=True)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     slug = models.SlugField(max_length=200, unique=True)
+    status = models.IntegerField(choices=STATUS, default= 0)
     
     class Meta:
         ordering = ['-created_at']
